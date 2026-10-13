@@ -1,0 +1,3 @@
+6734c953-dd12-4b36-abf4-8e34b4f34e4b||Amaya Perera|amaya@glamourbeauty.lk|+94771234567|Hair,Beauty|Expert hairstylist with 8 years of experience.|ACTIVE|2026-10-11 18:27:43|2026-10-11 18:27:43
+bf7ae74b-4cf5-4655-87f1-422b2cf90ea7||Nilufar Rashid|nilufar@glamourbeauty.lk|+94782345678|Nails,Skin|Certified nail technician and esthetician.|ACTIVE|2026-10-11 18:27:43|2026-10-11 18:27:43
+15b92fc5-fa3d-4f39-9479-7a1e4c7e8be2||Kaveesha Silva|kaveesha@glamourbeauty.lk|+94793456789|Body,Skin,Beauty|Massage therapist and skincare specialist.|ACTIVE|2026-10-11 18:27:43|2026-10-11 18:27:43

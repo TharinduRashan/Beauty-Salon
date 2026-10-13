@@ -1,0 +1,7 @@
+34d96cbe-b089-4da6-8fc2-6a1cb9ca025b|Classic Haircut|Professional haircut and styling for all hair types.|Hair|45|2500.00|ACTIVE|2026-10-11 18:27:43|2026-10-11 18:27:43
+0b683d0f-2039-49c8-bfec-5b9d02c476ed|Hair Coloring|Full hair color treatment with premium products.|Hair|120|6500.00|ACTIVE|2026-10-11 18:27:43|2026-10-11 18:27:43
+db9dc278-9bd0-468f-9b91-3607a333c002|Classic Manicure|Complete nail care for hands including shaping, cuticle care, and polish.|Nails|60|1800.00|ACTIVE|2026-10-11 18:27:43|2026-10-11 18:27:43
+613da7a7-819b-4cd6-b7f1-53d643aa830b|Luxury Facial|Deep cleansing facial with hydration and anti-aging treatment.|Skin|75|4500.00|ACTIVE|2026-10-11 18:27:43|2026-10-11 18:27:43
+3484816b-0a19-4e92-97a5-ce09511fa3ed|Classic Pedicure|Foot care treatment including soak, exfoliation, and polish.|Nails|75|2200.00|ACTIVE|2026-10-11 18:27:43|2026-10-11 18:27:43
+51d2b8c9-5790-4db5-a83e-f1d52818d90c|Eyebrow Threading|Precise eyebrow shaping using the traditional threading technique.|Beauty|20|800.00|ACTIVE|2026-10-11 18:27:43|2026-10-11 18:27:43
+b27129c3-7b14-412d-9809-c245f943e1eb|Body Massage|Full body relaxation massage with essential oils.|Body|90|5500.00|ACTIVE|2026-10-11 18:27:43|2026-10-11 18:27:43
