@@ -1,2 +1,1 @@
 383be4ec-9991-4c11-8cfd-a6d57a313dad|admin|admin@glamourbeauty.lk|$2a$12$gZMdoj0Sop0sM5yZojrmi.GP9fIY8V2gUevuc1FOKKhxqPg/75Qea|System Administrator|+94112345678|ADMIN|ACTIVE|2026-10-11 18:27:43|2026-10-11 18:27:43
-42da6b31-4cb9-48dd-b041-ab077f5d8119|Rashan|tharindurashan7@gmail.com|$2a$12$VodFnjT1GcJlcXudyDCkZO2LZ0mMleNTot9rzi0XuhElmsKKLztMe|Rashan P V D T|076 9801694|CUSTOMER|ACTIVE|2026-10-11 18:56:16|2026-10-11 18:56:16
