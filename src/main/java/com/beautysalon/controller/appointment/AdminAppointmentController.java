@@ -40,13 +40,13 @@ public class AdminAppointmentController {
     public String updateStatus(@PathVariable String id, @RequestParam String status,
                                 RedirectAttributes redirectAttributes) {
         try {
-            // Convert the given status string into an AppointmentStatus value.
+            
             appointmentService.updateStatus(id, AppointmentStatus.fromString(status));
 
-            // Display a success message after updating the status.
+           
             redirectAttributes.addFlashAttribute("successMessage", "Appointment status updated.");
         } catch (Exception e) {
-            // Display an error message if the update fails.
+            
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
         return "redirect:/admin/appointments";
@@ -58,10 +58,10 @@ public class AdminAppointmentController {
         try {
             appointmentService.cancel(id, null, true);
 
-            // Display a success message after cancelling the appointment.
+            
             redirectAttributes.addFlashAttribute("successMessage", "Appointment cancelled.");
         } catch (Exception e) {
-            // Display an error message if the cancellation fails.
+       
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
         return "redirect:/admin/appointments";
