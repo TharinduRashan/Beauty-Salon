@@ -1,87 +1,155 @@
-package com.beautysalon.repository.catalogue;
+private static final String FILE_NAME = "packages.txt";
+private static final int EXPECTED_FIELDS = 9;
 
-import com.beautysalon.model.catalogue.*;
-import com.beautysalon.util.DateTimeUtil;
-import com.beautysalon.util.FileStorageUtil;
-import com.beautysalon.util.IdGenerator;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+private final Path dataDir;
+private final IdGenerator idGenerator;
 
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.nio.file.Path;
-import java.util.*;
+@Autowired
+public PackageRepository(Path dataDirectory, IdGenerator idGenerator) {
+    this.dataDir = dataDirectory;
+    this.idGenerator = idGenerator;
+}
 
-@Repository
-public class PackageRepository {
-    private final Path dataDir;
-    private final IdGenerator idGenerator;
-    private static final int FIELDS = 9;
+// Get the path of the package storage file
+private Path getStorageFile() {
+    return dataDir.resolve(FILE_NAME);
+}
 
-    @Autowired
-    public PackageRepository(Path dataDirectory, IdGenerator idGenerator) {
-        this.dataDir = dataDirectory;
-        this.idGenerator = idGenerator;
+// Convert stored data into a ServicePackage object
+private ServicePackage fromParts(String[] parts) {
+
+    ServicePackage servicePackage = new ServicePackage();
+
+    servicePackage.setId(parts[0]);
+    servicePackage.setName(parts[1]);
+    servicePackage.setDescription(parts[2]);
+    servicePackage.setServiceIdsFromString(parts[3]);
+
+    servicePackage.setTotalPrice(new BigDecimal(parts[4]));
+    servicePackage.setDiscountPercent(new BigDecimal(parts[5]));
+
+    servicePackage.setStatus(ServiceStatus.fromString(parts[6]));
+
+    servicePackage.setCreatedAt(
+            DateTimeUtil.parseDateTime(parts[7])
+    );
+
+    servicePackage.setUpdatedAt(
+            DateTimeUtil.parseDateTime(parts[8])
+    );
+
+    return servicePackage;
+}
+
+// Convert a ServicePackage object into a storage line
+private String toLine(ServicePackage servicePackage) {
+
+    return FileStorageUtil.joinLine(
+            servicePackage.getId(),
+            servicePackage.getName(),
+            servicePackage.getDescription(),
+            servicePackage.getServiceIdsAsString(),
+            servicePackage.getTotalPrice().toPlainString(),
+            servicePackage.getDiscountPercent().toPlainString(),
+            servicePackage.getStatus().name(),
+            DateTimeUtil.formatDateTime(servicePackage.getCreatedAt()),
+            DateTimeUtil.formatDateTime(servicePackage.getUpdatedAt())
+    );
+}
+
+// Retrieve all packages from the storage file
+public List<ServicePackage> findAll() {
+
+    return FileStorageUtil.readAll(
+            getStorageFile(),
+            this::fromParts,
+            EXPECTED_FIELDS
+    );
+}
+
+// Retrieve packages that are currently active
+public List<ServicePackage> findAllActive() {
+
+    return findAll()
+            .stream()
+            .filter(ServicePackage::isActive)
+            .toList();
+}
+
+// Find a package using its unique ID
+public Optional<ServicePackage> findById(String id) {
+
+    if (id == null || id.isBlank()) {
+        return Optional.empty();
     }
 
-    private Path file() { return dataDir.resolve("packages.txt"); }
+    return findAll()
+            .stream()
+            .filter(pkg -> Objects.equals(pkg.getId(), id))
+            .findFirst();
+}
 
-    private ServicePackage fromParts(String[] p) {
-        ServicePackage pkg = new ServicePackage();
-        pkg.setId(p[0]);
-        pkg.setName(p[1]);
-        pkg.setDescription(p[2]);
-        pkg.setServiceIdsFromString(p[3]);
-        pkg.setTotalPrice(new BigDecimal(p[4]));
-        pkg.setDiscountPercent(new BigDecimal(p[5]));
-        pkg.setStatus(ServiceStatus.fromString(p[6]));
-        pkg.setCreatedAt(DateTimeUtil.parseDateTime(p[7]));
-        pkg.setUpdatedAt(DateTimeUtil.parseDateTime(p[8]));
-        return pkg;
+// Save a new package to the storage file
+public ServicePackage save(ServicePackage servicePackage) throws IOException {
+
+    if (servicePackage.getId() == null ||
+            servicePackage.getId().isBlank()) {
+
+        servicePackage.setId(idGenerator.generate());
     }
 
-    private String toLine(ServicePackage pkg) {
-        return FileStorageUtil.joinLine(
-            pkg.getId(), pkg.getName(), pkg.getDescription(), pkg.getServiceIdsAsString(),
-            pkg.getTotalPrice().toPlainString(), pkg.getDiscountPercent().toPlainString(),
-            pkg.getStatus().name(),
-            DateTimeUtil.formatDateTime(pkg.getCreatedAt()),
-            DateTimeUtil.formatDateTime(pkg.getUpdatedAt())
-        );
+    var currentTime = DateTimeUtil.now();
+
+    if (servicePackage.getCreatedAt() == null) {
+        servicePackage.setCreatedAt(currentTime);
     }
 
-    public List<ServicePackage> findAll() {
-        return FileStorageUtil.readAll(file(), this::fromParts, FIELDS);
+    servicePackage.setUpdatedAt(currentTime);
+
+    FileStorageUtil.appendLine(
+            getStorageFile(),
+            toLine(servicePackage)
+    );
+
+    return servicePackage;
+}
+
+// Update an existing package
+public ServicePackage update(ServicePackage servicePackage) throws IOException {
+
+    servicePackage.setUpdatedAt(DateTimeUtil.now());
+
+    String updatedLine = toLine(servicePackage);
+
+    FileStorageUtil.updateLines(
+            getStorageFile(),
+            line -> replaceMatchingPackage(line, servicePackage.getId(), updatedLine)
+    );
+
+    return servicePackage;
+}
+
+// Check whether a storage line belongs to the requested package
+private String replaceMatchingPackage(String line, String packageId,
+                                       String updatedLine) {
+
+    String[] parts = FileStorageUtil.splitLine(line);
+
+    if (parts.length > 0 &&
+            Objects.equals(parts[0], packageId)) {
+
+        return updatedLine;
     }
 
-    public List<ServicePackage> findAllActive() {
-        return findAll().stream().filter(ServicePackage::isActive).toList();
+    return line;
+}
+
+// Delete a package using its unique ID
+public void deleteById(String id) throws IOException {
+
+    if (id == null || id.isBlank()) {
+        return;
     }
 
-    public Optional<ServicePackage> findById(String id) {
-        return findAll().stream().filter(p -> p.getId().equals(id)).findFirst();
-    }
-
-    public ServicePackage save(ServicePackage pkg) throws IOException {
-        if (pkg.getId() == null || pkg.getId().isBlank()) pkg.setId(idGenerator.generate());
-        if (pkg.getCreatedAt() == null) pkg.setCreatedAt(DateTimeUtil.now());
-        pkg.setUpdatedAt(DateTimeUtil.now());
-        FileStorageUtil.appendLine(file(), toLine(pkg));
-        return pkg;
-    }
-
-    public ServicePackage update(ServicePackage pkg) throws IOException {
-        pkg.setUpdatedAt(DateTimeUtil.now());
-        String updatedLine = toLine(pkg);
-        FileStorageUtil.updateLines(file(), line -> {
-            String[] parts = FileStorageUtil.splitLine(line);
-            if (parts.length > 0 && pkg.getId().equals(parts[0])) return updatedLine;
-            return line;
-        });
-        return pkg;
-    }
-
-    public void deleteById(String id) throws IOException {
-        FileStorageUtil.deleteById(file(), id);
-    }
+    FileStorageUtil.deleteById(getStorageFile(), id);
 }
