@@ -1,36 +1,42 @@
-ACTIVE,
-INACTIVE;
+package com.beautysalon.model.catalogue;
 
-/**
- * Converts a string into a ServiceStatus value.
- * Returns ACTIVE when the provided value is invalid.
- */
-public static ServiceStatus fromString(String status) {
+import java.util.Locale;
 
-    if (status == null || status.isBlank()) {
-        return ACTIVE;
+public enum ServiceStatus {
+    ACTIVE,
+    INACTIVE;
+
+    /**
+     * Converts a string into a ServiceStatus value.
+     * Returns ACTIVE when the provided value is invalid.
+     */
+    public static ServiceStatus fromString(String status) {
+
+        if (status == null || status.isBlank()) {
+            return ACTIVE;
+        }
+
+        try {
+            return ServiceStatus.valueOf(
+                    status.trim().toUpperCase(Locale.ROOT)
+            );
+
+        } catch (IllegalArgumentException exception) {
+            return ACTIVE;
+        }
     }
 
-    try {
-        return ServiceStatus.valueOf(
-                status.trim().toUpperCase(Locale.ROOT)
-        );
-
-    } catch (IllegalArgumentException exception) {
-        return ACTIVE;
+    /**
+     * Checks whether the current status is ACTIVE.
+     */
+    public boolean isActive() {
+        return this == ACTIVE;
     }
-}
 
-/**
- * Checks whether the current status is ACTIVE.
- */
-public boolean isActive() {
-    return this == ACTIVE;
-}
-
-/**
- * Returns the opposite service status.
- */
-public ServiceStatus toggle() {
-    return this == ACTIVE ? INACTIVE : ACTIVE;
+    /**
+     * Returns the opposite service status.
+     */
+    public ServiceStatus toggle() {
+        return this == ACTIVE ? INACTIVE : ACTIVE;
+    }
 }
