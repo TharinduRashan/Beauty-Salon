@@ -5,3 +5,4 @@ db9dc278-9bd0-468f-9b91-3607a333c002|Classic Manicure|Complete nail care for han
 3484816b-0a19-4e92-97a5-ce09511fa3ed|Classic Pedicure|Foot care treatment including soak, exfoliation, and polish.|Nails|75|2200.00|ACTIVE|2026-10-11 18:27:43|2026-10-11 18:27:43
 51d2b8c9-5790-4db5-a83e-f1d52818d90c|Eyebrow Threading|Precise eyebrow shaping using the traditional threading technique.|Beauty|20|800.00|ACTIVE|2026-10-11 18:27:43|2026-10-11 18:27:43
 b27129c3-7b14-412d-9809-c245f943e1eb|Body Massage|Full body relaxation massage with essential oils.|Body|90|5500.00|ACTIVE|2026-10-11 18:27:43|2026-10-11 18:27:43
+74b73e52-2ebc-4b3f-89d9-180208355b4a|Body Waxing|waxing the body with gentle touch|Body|30|1700|ACTIVE|2026-11-10 11:35:56|2026-11-10 11:35:56
