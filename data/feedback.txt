@@ -2,3 +2,4 @@ d688c018-33dd-475f-ac54-4d7ce25b7e08|383be4ec-9991-4c11-8cfd-a6d57a313dad||REVIE
 701c83bf-7434-4d7e-96cd-8fbf62cda61b|383be4ec-9991-4c11-8cfd-a6d57a313dad||REVIEW|5|Mindful Sanctuary and Glowing Skin|The Luxury Facial was heavenly. My skin has never felt softer or looked brighter. Highly recommend Amaya and the team.|APPROVED|2026-10-11 19:15:18|2026-10-11 19:15:18
 1fe52e96-4660-40ab-8af5-acd072736231|42da6b31-4cb9-48dd-b041-ab077f5d8119||REVIEW||Test|test esttttttttttt|PENDING|2026-10-13 17:03:37|2026-10-13 17:03:37
 ec7d61cb-5ea7-4c27-abd0-915a9a1dc208|2f5937e1-a773-4d52-88de-1a7062d25410||REVIEW||abcd|sfsdghtj fgfedhtj|APPROVED|2026-11-10 10:04:03|2026-11-10 11:23:52
+Add customer feedback records with different approval statusesadfde8ab-136f-4f22-a6f4-61fcf2c82bb0|9d51bd08-0ab1-4405-a09b-98a5ed448dea||GENERAL||Treatments|Very quality traatments|PENDING|2026-11-10 14:38:23|2026-11-10 14:38:23
