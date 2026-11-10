@@ -6,3 +6,5 @@ db9dc278-9bd0-468f-9b91-3607a333c002|Classic Manicure|Complete nail care for han
 51d2b8c9-5790-4db5-a83e-f1d52818d90c|Eyebrow Threading|Precise eyebrow shaping using the traditional threading technique.|Beauty|20|800.00|ACTIVE|2026-10-11 18:27:43|2026-10-11 18:27:43
 b27129c3-7b14-412d-9809-c245f943e1eb|Body Massage|Full body relaxation massage with essential oils.|Body|90|5500.00|ACTIVE|2026-10-11 18:27:43|2026-10-11 18:27:43
 74b73e52-2ebc-4b3f-89d9-180208355b4a|Body Waxing|waxing the body with gentle touch|Body|30|1700|ACTIVE|2026-11-10 11:35:56|2026-11-10 11:35:56
+021c749a-04b5-49a4-b5c6-571b9322e481|Hair Coloring|Color the hair as the customer request|Hair|45|3500|ACTIVE|2026-11-10 11:37:57|2026-11-10 11:37:57
+
